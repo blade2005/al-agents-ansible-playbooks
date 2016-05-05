@@ -9,9 +9,9 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - 6
-        - 7
-    - name: CentOS
+        - squeeze
+        - wheezy
+    - name: EL
       versions:
         - 6
         - 7
