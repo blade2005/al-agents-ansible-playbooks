@@ -1,0 +1,5 @@
+##############################
+- name: Configure AlertLogic Agent
+  command: "/etc/init.d/al-agent configure {{ al_agent_hostoptions }} {{ al_agent_proxyoptions }}"
+  tags: configure_al_agent
+  when: agent_provisioned|failed
