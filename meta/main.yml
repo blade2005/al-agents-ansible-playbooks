@@ -16,4 +16,6 @@ galaxy_info:
         - 7
   categories:
     - monitoring
+  galaxy_tags:
+    - monitoring
 dependencies: []
