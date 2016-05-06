@@ -17,6 +17,8 @@ galaxy_info:
         - 7
   categories:
     - monitoring
+    - alertlogic
+    - ids
   galaxy_tags:
     - monitoring
 dependencies: []
