@@ -15,6 +15,9 @@ install:
 
 script:
   # Check the role/playbook's syntax.
+  - md5sum ansible.cfg
+  - cat ansible.cfg
+  - ansible --version
   - ansible-playbook -i al-agents/tests/inventory al-agents/tests/test.yml --syntax-check
   # # Run the role/playbook with ansible-playbook.
   # - "ansible-playbook -i al-agents/tests/inventory al-agents/tests/test.yml --connection=local --sudo"
