@@ -12,6 +12,9 @@ galaxy_info:
         - squeeze
         - wheezy
     - name: EL
+        - 6
+        - 7
+    - name: CentOS
       versions:
         - 6
         - 7
@@ -21,4 +24,6 @@ galaxy_info:
     - ids
   galaxy_tags:
     - monitoring
+    - alertlogic
+    - ids
 dependencies: []

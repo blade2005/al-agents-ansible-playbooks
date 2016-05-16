@@ -1,0 +1,7 @@
+##############################
+- name: Provision AlertLogic Agent
+  command: "/etc/init.d/al-agent provision {{ al_agent_typeoptions }} {{ al_agent_regoptions }}"
+  notify:
+    - restart al-agent
+  tags: provision_al_agent
+  when: not al_agent_for_imaging and agent_provisioned|failed
