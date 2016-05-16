@@ -1,39 +1,10 @@
 ---
 ##############################
-- include_vars: "{{ ansible_os_family }}.yml"
-  tags: always
-
-- include: windows.yml
+- include: _windows.yml
   when: windows_enabled 
   tags: [windows]
 
-- include: install_agent.yml
-  tags: [install_agent]
+- include: _linux.yml
+  tags: [al_agent]
 
-##############################
-- name: Test for Agent Provisioned
-  command: "ls /var/alertlogic/etc/host_key.pem"
-  ignore_errors: True
-  register: agent_provisioned
-  tags: 
-    - configure_al_agent
-    - provision_al_agent
-
-##############################
-- include: configure_agent.yml
-  tags: [configure_al_agent]
-
-##############################
-- include: provision_agent.yml
-  tags: [provision_al_agent]
-
-##############################
-- include: configure_loggers.yml
-  tags: [provision_al_agent]
-
-##############################
-- include: selinux.yml
-  tags: [selinux]
-
-##############################
 ##############################
