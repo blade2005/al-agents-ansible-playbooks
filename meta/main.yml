@@ -14,10 +14,6 @@ galaxy_info:
     - name: EL
         - 6
         - 7
-    - name: CentOS
-      versions:
-        - 6
-        - 7
   categories:
     - monitoring
     - alertlogic
