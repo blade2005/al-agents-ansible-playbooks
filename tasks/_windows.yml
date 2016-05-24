@@ -1,6 +1,6 @@
-- name: Download Alert Logic Unified Agent to '%TEMP%\al_agent-LATEST.msi'
+- name: Download Alert Logic Unified Agent to 'C:/TEMP/al_agent-LATEST.msi'
   win_get_url:
     url: 'https://scc.alertlogic.net/software/al_agent-LATEST.msi'
-    dest: "%TEMP%\al_agent-LATEST.msi"
+    dest: "C:/TEMP/al_agent-LATEST.msi"
 
-- win_msi: path="%TEMP%\al_agent-LATEST.msi" creates="C:\Program Files (x86)\AlertLogic" extra_args="{{ al_agent_windows }}"
+- win_msi: path="C:/TEMP/al_agent-LATEST.msi" creates="C:\Program Files (x86)\AlertLogic" extra_args="{{ al_agent_windows }}"
