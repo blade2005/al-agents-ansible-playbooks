@@ -18,12 +18,3 @@ al_agent_typeoptions: "{{ ( al_agent_for_autoscaling is defined ) | ternary('--i
 # Setting variables for configuring the agent
 al_agent_proxyoptions: "{{ ( al_agent_proxy_url is defined ) | ternary('--proxy ' + al_agent_proxy_url, '') }}"
 al_agent_hostoptions: "{{ ( al_agent_egress_url is defined ) | ternary('--host ' + al_agent_egress_url, '') }}"
-
-# SENSOR_HOST, SENSOR_PORT, USE_PROXY, PROV_NOW, PROV_KEY, PROV_ONLY, INSTALL_ONLY
-al_agent_windows_options: 
-  - "{{ ( al_agent_for_imaging is defined ) | ternary('INSTALL_ONLY=1 PROV_NOW=0', '' ) }}"
-  - "{{ ( al_agent_for_imaging is not defined ) | ternary( ( al_agent_proxy_url is defined ) | ternary('USE_PROXY=' + al_agent_proxy_url, ''), '') }}"
-  - "{{ ( al_agent_for_imaging is not defined ) | ternary( ( al_agent_egress_url is defined ) | ternary('SENSOR_HOST=' + al_agent_egress_url, ''), '') }}"
-  - "{{ ( al_agent_for_imaging is not defined ) | ternary( ( al_agent_registration_key is defined ) | ternary('PROV_KEY=' + al_agent_registration_key, ''), '') }}"
-
-al_agent_windows: al_agent_windows_options|join(' ')
