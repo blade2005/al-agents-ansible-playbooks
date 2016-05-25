@@ -1,3 +1,16 @@
+name: Check if host_key.pem exists
+  - win_stat: path=C:\Program Files (x86)\Common Files\AlertLogic\host_key.pem
+    register: al_agent_skip_provision
+
+# SENSOR_HOST, SENSOR_PORT, USE_PROXY, PROV_NOW, PROV_KEY, PROV_ONLY, INSTALL_ONLY
+al_agent_windows_options: 
+  - "{{ ( al_agent_skip_provision is defined or al_agent_for_imaging is defined) | ternary('INSTALL_ONLY=1 PROV_NOW=0', '' ) }}"
+  - "{{ ( al_agent_proxy_url is defined and al_agent_skip_provision is not defined and al_agent_for_imaging is not defined ) | ternary('USE_PROXY=' + al_agent_proxy_url, '') }}"
+  - "{{ ( al_agent_egress_url is defined and al_agent_skip_provision is not defined and al_agent_for_imaging is not defined ) | ternary('SENSOR_HOST=' + al_agent_egress_url, '') }}"
+  - "{{ ( al_agent_registration_key is defined and al_agent_skip_provision is not defined and al_agent_for_imaging is not defined ) | ternary('PROV_KEY=' + al_agent_registration_key, '') }}"
+
+al_agent_windows: al_agent_windows_options|join(' ')
+
 - name: Download Alert Logic Unified Agent to 'C:/TEMP/al_agent-LATEST.msi'
   win_get_url:
     url: 'https://scc.alertlogic.net/software/al_agent-LATEST.msi'
