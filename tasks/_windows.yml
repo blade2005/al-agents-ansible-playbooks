@@ -5,22 +5,22 @@
 
 # SENSOR_HOST, SENSOR_PORT, USE_PROXY, PROV_NOW, PROV_KEY, PROV_ONLY, INSTALL_ONLY
 - set_fact: al_agent_windows_options="{{al_agent_windows_options}} + [ \'INSTALL_ONLY=1\' ]"
-  when: al_agent_skip_provision.stat.exists or al_agent_for_imaging is defined
+  when: al_agent_skip_provision.stat.exists or al_agent_for_imaging
 
 - set_fact: al_agent_windows_options="{{al_agent_windows_options}} + [ \'PROV_NOW=0\' ]"
-  when: al_agent_skip_provision.stat.exists or al_agent_for_imaging is defined
+  when: al_agent_skip_provision.stat.exists or al_agent_for_imaging
 
 - set_fact: al_agent_windows_options="{{al_agent_windows_options}} + [ \'USE_PROXY=\' + al_agent_proxy_url ]"
-  when: al_agent_proxy_url is defined and not al_agent_skip_provision.stat.exists and al_agent_for_imaging is not defined
+  when: al_agent_proxy_url is defined and not al_agent_skip_provision.stat.exists and not al_agent_for_imaging
 
 - set_fact: al_agent_windows_options="{{al_agent_windows_options}} + [ \'SENSOR_HOST=\' + al_agent_egress_host ]"
-  when: al_agent_egress_host is defined and not al_agent_skip_provision.stat.exists and al_agent_for_imaging is not defined
+  when: al_agent_egress_host is defined and not al_agent_skip_provision.stat.exists and not al_agent_for_imaging
 
 - set_fact: al_agent_windows_options="{{al_agent_windows_options}} + [ \'SENSOR_PORT=\' + al_agent_egress_port ]"
-  when: al_agent_egress_port is defined and not al_agent_skip_provision.stat.exists and al_agent_for_imaging is not defined
+  when: al_agent_egress_port is defined and not al_agent_skip_provision.stat.exists and not al_agent_for_imaging
 
 - set_fact: al_agent_windows_options="{{al_agent_windows_options}} + [ \'PROV_KEY=\' + al_agent_registration_key ]"
-  when: not al_agent_skip_provision.stat.exists and al_agent_registration_key is defined and al_agent_for_imaging is not defined
+  when: not al_agent_skip_provision.stat.exists and al_agent_registration_key is defined and not al_agent_for_imaging
 
 - set_fact: al_agent_windows="{{al_agent_windows_options|join(' ')}}"
 
