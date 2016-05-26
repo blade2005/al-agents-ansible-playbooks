@@ -5,23 +5,5 @@ al_agent_registration_key: 'your_registration_key_here'
 #al_agent_egress_port: ''
 #al_agent_egress_host: ''
 #al_agent_proxy_url: ''
-#al_agent_for_autoscaling: ''
-#al_agent_for_imaging: ''
-
-#########################################
-###### DO NOT EDIT BELOW THIS LINE ######
-#########################################
-
-# Setting variables for provisioning of the agent
-- set_fact: al_agent_regoptions="--key {{ al_agent_registration_key }}"
-  when: al_agent_registration_key is defined and your_registration_key_here != 'your_registration_key_here'
-
-- set_fact: al_agent_typeoptions='--inst-type role'
-  when: al_agent_for_autoscaling is defined
-
-# Setting variables for configuring the agent
-- set_fact: al_agent_proxyoptions="--proxy {{ al_agent_proxy_url }}"
-  when: al_agent_proxy_url is defined
-
-- set_fact: al_agent_hostoptions="--host {{ al_agent_egress_host }}"
-  when: al_agent_egress_host is defined
+al_agent_for_autoscaling: False
+al_agent_for_imaging: False

@@ -1,4 +1,10 @@
 ##############################
+- set_fact: al_agent_regoptions="--key {{ al_agent_registration_key }}"
+  when: al_agent_registration_key is defined and your_registration_key_here != 'your_registration_key_here'
+
+- set_fact: al_agent_typeoptions='--inst-type role'
+  when: al_agent_for_autoscaling
+
 - name: Provision AlertLogic Agent
   command: "/etc/init.d/al-agent provision {{ al_agent_typeoptions }} {{ al_agent_regoptions }}"
   notify:
