@@ -16,8 +16,9 @@
 - set_fact: al_agent_regoptions="{{ '--key ' + al_agent_registration_key }}"
   when: al_agent_registration_key is defined
 
- - set_fact: al_agent_typeoptions="{{ '--inst-type role','--inst-type host' }}"
-   when: al_agent_for_autoscaling is defined
+- set_fact: al_agent_typeoptions='--inst-type host'
+- set_fact: al_agent_typeoptions='--inst-type role'
+  when: al_agent_for_autoscaling is defined
 
 # Setting variables for configuring the agent
 - set_fact: al_agent_proxyoptions="{{ '--proxy ' + al_agent_proxy_url, '' }}"
