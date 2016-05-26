@@ -13,15 +13,15 @@ al_agent_registration_key: 'your_registration_key_here'
 #########################################
 
 # Setting variables for provisioning of the agent
-- set_fact: al_agent_regoptions="{{ '--key ' + al_agent_registration_key }}"
+- set_fact: al_agent_regoptions="--key {{ al_agent_registration_key }}"
   when: al_agent_registration_key is defined and your_registration_key_here != 'your_registration_key_here'
 
 - set_fact: al_agent_typeoptions='--inst-type role'
   when: al_agent_for_autoscaling is defined
 
 # Setting variables for configuring the agent
-- set_fact: al_agent_proxyoptions="{{ '--proxy ' + al_agent_proxy_url, '' }}"
+- set_fact: al_agent_proxyoptions="--proxy {{ al_agent_proxy_url }}"
   when: al_agent_proxy_url is defined
 
-- set_fact: al_agent_hostoptions="{{ '--host ' + al_agent_egress_host }}"
+- set_fact: al_agent_hostoptions="--host {{ al_agent_egress_host }}"
   when: al_agent_egress_host is defined
