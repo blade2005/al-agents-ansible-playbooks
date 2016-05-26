@@ -1,6 +1,6 @@
 ---
 # Uncomment for global or place in group/host vars for granular control
-al_agent_registration_key: 'your_registration_key_here'
+# al_agent_registration_key: 'your_registration_key_here'
 # Uncomment the following when changing
 #al_agent_egress_port: ''
 #al_agent_egress_host: ''
