@@ -13,9 +13,15 @@
 #########################################
 
 # Setting variables for provisioning of the agent
-al_agent_regoptions: "{{ ( al_agent_registration_key is defined ) | ternary('--key ' + al_agent_registration_key,'') }}"
-al_agent_typeoptions: "{{ ( al_agent_for_autoscaling is defined ) | ternary('--inst-type role','--inst-type host') }}"
+- set_fact: al_agent_regoptions="{{ '--key ' + al_agent_registration_key }}"
+  when: al_agent_registration_key is defined
+
+ - set_fact: al_agent_typeoptions="{{ '--inst-type role','--inst-type host' }}"
+   when: al_agent_for_autoscaling is defined
 
 # Setting variables for configuring the agent
-al_agent_proxyoptions: "{{ ( al_agent_proxy_url is defined ) | ternary('--proxy ' + al_agent_proxy_url, '') }}"
-al_agent_hostoptions: "{{ ( al_agent_egress_host is defined ) | ternary('--host ' + al_agent_egress_host, '') }}"
+- set_fact: al_agent_proxyoptions="{{ '--proxy ' + al_agent_proxy_url, '' }}"
+  when: al_agent_proxy_url is defined
+
+- set_fact: al_agent_hostoptions="{{ '--host ' + al_agent_egress_host }}"
+  when: al_agent_egress_host is defined
