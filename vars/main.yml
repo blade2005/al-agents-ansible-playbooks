@@ -1,6 +1,6 @@
 ---
 # Uncomment for global or place in group/host vars for granular control
-#al_agent_registration_key: 'your_registration_key_here'
+al_agent_registration_key: 'your_registration_key_here'
 # Uncomment the following when changing
 #al_agent_egress_port: ''
 #al_agent_egress_host: ''
@@ -14,9 +14,8 @@
 
 # Setting variables for provisioning of the agent
 - set_fact: al_agent_regoptions="{{ '--key ' + al_agent_registration_key }}"
-  when: al_agent_registration_key is defined
+  when: al_agent_registration_key is defined and your_registration_key_here != 'your_registration_key_here'
 
-- set_fact: al_agent_typeoptions='--inst-type host'
 - set_fact: al_agent_typeoptions='--inst-type role'
   when: al_agent_for_autoscaling is defined
 
